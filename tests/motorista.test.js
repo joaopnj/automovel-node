@@ -1,4 +1,3 @@
-var motoristaRoute = require('../routes/motoristaRoute');
 const request      = require('supertest');
 const app          = require('../app');
 const middleware   = require('../middleware/mongoMiddleware');
@@ -25,13 +24,11 @@ describe('Criar, listar, editar e deletar motorista ', function() {
         .query({ nome: 'João'})
         .expect(200)
         .then(listResponse => {
-          console.log(listResponse.body);
           request(app)
           .post('/motorista/upsert')
           .send({ id : listResponse.body._id , nome: 'Jorge'})
           .expect(200)
           .then( updateResponse => {
-            console.log(JSON.stringify(updateResponse));
             request(app)
             .delete('/motorista/'+updateResponse.body._id)
             .expect(200)
