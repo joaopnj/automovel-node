@@ -4,7 +4,7 @@ var cookieParser        = require('cookie-parser');
 var logger              = require('morgan');
 var automovelRoute      = require('./routes/automovelRoute');
 var motoristaRoute      = require('./routes/motoristaRoute');
-var utilizacaoRoute      = require('./routes/utilizacaoRoute'); 
+var utilizacaoRoute     = require('./routes/utilizacaoRoute'); 
 var mongoMiddleware     = require('./middleware/mongoMiddleware');
 
 global.browser;
