@@ -9,7 +9,7 @@ AutomovelService = {
 
     upsert: async (body, res) => {
         var query = {'placa': body.placa };
-        Automovel.findOneAndUpdate(query, body, {upsert: true, new: true}, function(err, doc){
+        Automovel.findOneAndUpdate(query, body, {upsert: true}, function(err, doc){
             if(err) {
                 return res.send(500, { error: err});
             }
@@ -19,8 +19,6 @@ AutomovelService = {
 
     save: async (body, res) => {
         automovel = new Automovel();
-        console.log("Corpo: "+body);
-        console.log("Automovel: "+automovel);
         automovel.placa = body.placa;
         automovel.cor   = body.cor;
         automovel.marca = body.marca;
