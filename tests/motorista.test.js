@@ -47,7 +47,6 @@ describe('List all automoveis', function() {
   it('respond with json', function(done){
     request(app)
       .get('/motorista')
-      .expect(200)
       .end(function(err, res){
         if (err) return done(err);
         done()
