@@ -11,6 +11,10 @@ UtilizacaoController = {
 
     save: (req, res) => {
         UtilizacaoService.save(req, res);
+    },
+
+    delete: (req, res) => {
+        UtilizacaoService.delete(req, res);
     }
 };
 

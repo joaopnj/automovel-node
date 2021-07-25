@@ -14,4 +14,8 @@ router.post('/iniciar', (req, res) =>
     UtilizacaoController.save(req.body, res)
 );
 
+router.delete('/:id', (req, res) =>
+    UtilizacaoController.delete(req, res)
+);
+
 module.exports = router;

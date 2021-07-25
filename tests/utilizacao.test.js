@@ -4,12 +4,14 @@ const middleware   = require('../middleware/mongoMiddleware');
 
 afterAll(() => middleware.disconnect());
 
-describe('Criar, listar, editar e deletar motorista ', function() {
-    it('Criar motorista', function(done){
+describe('Criar, listar, editar e deletar utilizacao ', function() {
+    it('Criar utilizacao', function(done){
       request(app)
-        .post('/motorista')
+        .post('/utilizacao/iniciar')
         .send({
-          "nome": "João"
+          "automovel":       "AAA1111",
+          "motorista":       "Motorista Teste 1",
+          "motivo":          "Motivo Teste 1"
         })
         .expect(200)
         .end(function(err, res){
@@ -18,19 +20,19 @@ describe('Criar, listar, editar e deletar motorista ', function() {
         });
     });
 
-    it('Listar pelo nome, alterar e deletar', function(done){
+    it('Listar pelo motorista e placa, alterar e deletar', function(done){
       request(app)
-        .get('/motorista')
-        .query({ nome: 'João'})
+        .get('/utilizacao')
+        .query({ motorista: 'Motorista Teste 1', automovel: 'AAA1111'})
         .expect(200)
         .then(listResponse => {
           request(app)
-          .post('/motorista/upsert')
-          .send({ id : listResponse.body._id , nome: 'Jorge'})
+          .post('/utilizacao/finalizar')
+          .send({motorista: 'Motorista Teste 1'})
           .expect(200)
           .then( updateResponse => {
             request(app)
-            .delete('/motorista/'+updateResponse.body._id)
+            .delete('/utilizacao/'+updateResponse.body._id)
             .expect(200)
             .end(function(err, res) {
                 if (err) throw err;
@@ -46,7 +48,7 @@ describe('Criar, listar, editar e deletar motorista ', function() {
 describe('List all automoveis', function() {
   it('respond with json', function(done){
     request(app)
-      .get('/motorista')
+      .get('/utilizacao')
       .expect(200)
       .end(function(err, res){
         if (err) return done(err);

@@ -10,8 +10,6 @@ UtilizacaoService = {
                 return utilizacao ? res.status(200).send(utilizacao) : res.status(400).send('Utilizacao não encontrada!');
             });
         } else {
-            if (req.query.automovel) return res.status(400).send("Coloque o automovel para a pesquisa");
-            if (req.query.motorista) return res.status(400).send("Coloque o motorista para a pesquisa");
             Utilizacao.find((err, utilizacao) => {
                 return utilizacao ? res.status(200).send(utilizacao) : res.status(400).send('Utilizacao não encontrada!');
             });
@@ -71,7 +69,18 @@ UtilizacaoService = {
             }
         });
 
-    }
+    },
+
+    delete: async (req, res) => {
+        Utilizacao.findByIdAndDelete(req.params.id, function (err, doc) {
+            if (err) {
+                return res.send(400, {
+                    error: err
+                });
+            }
+            return res.status(200).send(doc);
+        });
+    },
 }
 
 
