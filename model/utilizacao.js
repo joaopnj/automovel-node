@@ -5,7 +5,7 @@ var utilizacao = new Schema({
     automovel:       {type: String },
     motorista:       {type: String },
     motivo:          {type: String },
-    dataInicio:      {type: Date},
+    dataInicio:      {type: Date, default: Date.now},
     dataFim:         {type: Date},
     created_date:    {type: Date, default: Date.now}
 });

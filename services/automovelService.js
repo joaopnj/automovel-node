@@ -10,7 +10,7 @@ AutomovelService = {
                 return automovel ? res.status(200).send(automovel) : res.status(400).send('Automovel não encontrado!');
             });
         } else {
-            if (req.query.placa) return res.status(400).send("Coloque a cor para a pesquisa");
+            if (req.query.placa) return res.status(400).send("Coloque a placa para a pesquisa");
             if (req.query.cor) return res.status(400).send("Coloque a cor para a pesquisa");
             Automovel.find( (err, automovel) => {
                 return automovel ? res.status(200).send(automovel) : res.status(400).send('Automoveis não encontrados!');
