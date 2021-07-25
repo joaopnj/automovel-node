@@ -7,8 +7,6 @@ const Automovel    = require('./../model/automovel');
 afterAll(() => middleware.disconnect());
 
 describe('Criar, listar, editar e deletar automovel ', function() {
-    // let body = new Automovel();
-    // body.
     it('Criar automovel', function(done){
       request(app)
         .post('/automovel')
